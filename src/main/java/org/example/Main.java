@@ -1,25 +1,29 @@
 package org.example;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws Exception {
+        String what, where;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("What are you looking for?: ");
+        what = scanner.next();
+        System.out.print("Where?");
+        where = scanner.next();
+        System.out.println("Init searching of " + what + " on " + where + ".");
         ScrapperBuilder piwi = new ScrapperBuilder();
-        piwi.search("Restaurants", "Colorado");
+        piwi.search(what, where);
         for (int i = 0; i < piwi.pages; i++) {
             piwi
                 .doTheFollowing(driver -> {
